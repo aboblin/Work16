@@ -2,8 +2,9 @@ var h = document.getElementById('h');
 var originalHeader = h.innerHTML;
 var list = document.getElementById("thelist");
 var otherlist = document.getElementById("theotherlist");
-var listElements = document.getElementsByTagName("li");
-var fibNum = 0;
+var listElements = list.getElementsByTagName("li");
+var fibElements = otherlist.getElementsByTagName("li")
+//var fibNum = 0;
 //var otherlistElements = document.getElementsByTagName("li");
 
 var replaceCallback = function(e) {
@@ -16,23 +17,22 @@ var originalCallback = function(e) {
 };
 
 var addElement = function(e){
-    var num = listElements.length - fibNum; //gives us the # of the next pos since len is 1 more than pos
+    var num = listElements.length; //gives us the # of the next pos since len is 1 more than pos
     var temp = document.createElement("li");
     temp.innerHTML = "item " + num;
     temp.addEventListener("click", removeElement);
-temp.addEventListener( 'mouseover' , replaceCallback );
-temp.addEventListener( 'mouseout' , originalCallback );
+    temp.addEventListener( 'mouseover' , replaceCallback );
+    temp.addEventListener( 'mouseout' , originalCallback );
     list.appendChild(temp);
 };
 
 var addFibonacci = function(e){
-    //var num = listElements.length; //gives us the # of the next pos since len is 1 more than pos
+    var num = fibElements.length; //gives us the # of the next pos since len is 1 more than pos
     var temp = document.createElement("li");
-    temp.innerHTML = "item" + fibonacci(fibNum);
-    fibNum += 1;
-temp.addEventListener("click", removeElement);
-temp.addEventListener( 'mouseover' , replaceCallback );
-temp.addEventListener( 'mouseout' , originalCallback );
+    temp.innerHTML = "item" + fibonacci(num);
+    temp.addEventListener("click", removeElement);
+    temp.addEventListener( 'mouseover' , replaceCallback );
+    temp.addEventListener( 'mouseout' , originalCallback );
     otherlist.appendChild(temp);
 
 };
@@ -54,11 +54,16 @@ var fibonacci = function(n) {
     return fibonacci(n - 2) + fibonacci(n - 1);
 };
 
-
-
 for (num = 0; num < listElements.length; num++){
 	console.log(num);
     listElements[num].addEventListener("click", removeElement);
-listElements[num].addEventListener( 'mouseover' , replaceCallback );
-listElements[num].addEventListener( 'mouseout' , originalCallback );
+    listElements[num].addEventListener( 'mouseover' , replaceCallback );
+    listElements[num].addEventListener( 'mouseout' , originalCallback );
+}
+
+for (num = 0; num < fibElements.length; num++){
+	console.log(num);
+    listElements[num].addEventListener("click", removeElement);
+    listElements[num].addEventListener( 'mouseover' , replaceCallback );
+    listElements[num].addEventListener( 'mouseout' , originalCallback );
 }
