@@ -7,7 +7,7 @@ var fibNum = 0;
 //var otherlistElements = document.getElementsByTagName("li");
 
 var replaceCallback = function(e) {
-    h.innerHTML = e.path[0].innerHTML;
+    h.innerHTML = e.target.innerHTML;
 };
 
 var originalCallback = function(e) {
@@ -16,9 +16,12 @@ var originalCallback = function(e) {
 };
 
 var addElement = function(e){
-    var num = listElements.length; //gives us the # of the next pos since len is 1 more than pos
+    var num = listElements.length - fibNum; //gives us the # of the next pos since len is 1 more than pos
     var temp = document.createElement("li");
     temp.innerHTML = "item " + num;
+    temp.addEventListener("click", removeElement);
+temp.addEventListener( 'mouseover' , replaceCallback );
+temp.addEventListener( 'mouseout' , originalCallback );
     list.appendChild(temp);
 };
 
@@ -27,7 +30,11 @@ var addFibonacci = function(e){
     var temp = document.createElement("li");
     temp.innerHTML = "item" + fibonacci(fibNum);
     fibNum += 1;
+temp.addEventListener("click", removeElement);
+temp.addEventListener( 'mouseover' , replaceCallback );
+temp.addEventListener( 'mouseout' , originalCallback );
     otherlist.appendChild(temp);
+
 };
 
 //button orders matter. You can't use the code below if u put it with the other variables at the top
@@ -48,9 +55,10 @@ var fibonacci = function(n) {
 };
 
 
-list.addEventListener( 'mouseover' , replaceCallback );
-list.addEventListener( 'mouseout' , originalCallback );
 
 for (num = 0; num < listElements.length; num++){
-    listElements[num].addEventListener("click", removeElement)
+	console.log(num);
+    listElements[num].addEventListener("click", removeElement);
+listElements[num].addEventListener( 'mouseover' , replaceCallback );
+listElements[num].addEventListener( 'mouseout' , originalCallback );
 }
