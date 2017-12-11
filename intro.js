@@ -3,8 +3,6 @@ var originalHeader = h.innerHTML;
 var list = document.getElementById("thelist");
 var listElements = document.getElementsByTagName("li");
 
-
-
 var replaceCallback = function(e) {
     h.innerHTML = e.path[0].innerHTML;
 };
@@ -29,6 +27,13 @@ button.addEventListener("click", addElement)
 var removeElement = function(e){
     this.remove();
 }
+
+var fibonacci = function(n) {
+    if (n < 1) {return 1;};
+    return fibonacci(n - 2) + fibonacci(n - 1);
+};
+
+
 
 list.addEventListener( 'mouseover' , replaceCallback );
 list.addEventListener( 'mouseout' , originalCallback );
